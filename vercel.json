@@ -6,15 +6,39 @@
   "installCommand": "npm install",
   "devCommand": "npm run dev",
   "env": {
-    "VITE_VAPI_KEY": "@vite_vapi_key",
-    "VITE_VAPI_ASSISTANT_ID": "@vite_vapi_assistant_id",
-    "VITE_OPENAI_API_KEY": "@vite_openai_api_key",
-    "VITE_VOICEFLOW_API_KEY": "@vite_voiceflow_api_key",
-    "VITE_VOICEFLOW_VERSION_ID": "@vite_voiceflow_version_id"
+    "VITE_VAPI_KEY": "VITE_VAPI_KEY",
+    "VITE_VAPI_ASSISTANT_ID": "VITE_VAPI_ASSISTANT_ID",
+    "VITE_OPENAI_API_KEY": "VITE_OPENAI_API_KEY",
+    "VITE_VOICEFLOW_API_KEY": "VITE_VOICEFLOW_API_KEY",
+    "VITE_VOICEFLOW_VERSION_ID": "VITE_VOICEFLOW_VERSION_ID"
   },
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
   "routes": [
     {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/assets/(.*)",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      },
+      "continue": true
+    },
+    {
       "src": "/(.*)",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept, Authorization"
+      },
       "dest": "/index.html"
     }
   ]

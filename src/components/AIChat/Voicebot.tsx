@@ -97,7 +97,10 @@ export const Voicebot: React.FC<VoicebotProps> = ({ onLeadCaptured, onClose }) =
           throw new Error('Invalid Vapi API key. Please check your VITE_VAPI_KEY in .env file.');
         }
 
-        const vapi = new Vapi(config.vapi.key);
+        const vapi = new Vapi(config.vapi.key, {
+          assistantId: config.vapi.assistantId,
+          baseUrl: 'https://api.vapi.ai'
+        });
         
         // Verify vapi instance
         if (!vapi) {

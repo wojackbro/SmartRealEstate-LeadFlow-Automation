@@ -57,10 +57,15 @@ export default defineConfig(({ mode }) => {
       sourcemap: mode === 'development',
       minify: mode === 'production',
       target: 'esnext',
-      assetsInlineLimit: 4096
+      assetsInlineLimit: 4096,
+      outDir: 'dist',
+      emptyOutDir: true
     },
     define: {
-      'process.env': env
+      'process.env': {
+        ...env,
+        NODE_ENV: mode
+      }
     },
     server: {
       port: 3000,
