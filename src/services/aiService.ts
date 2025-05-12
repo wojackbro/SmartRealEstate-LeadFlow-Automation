@@ -63,82 +63,45 @@ async function fetchOpenAI(messages: any[], model = 'gpt-3.5-turbo') {
 
 // Helper function to call Vapi for voice interactions
 async function fetchVapi(audio: string) {
-  try {
-    console.log('Calling VAPI with audio data...');
-    const response = await fetch('https://api.vapi.ai/v1/voice', {
-      method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${import.meta.env.VITE_VAPI_KEY}`
-      },
-      body: JSON.stringify({ 
-        audio,
-        assistant_id: import.meta.env.VITE_VAPI_ASSISTANT_ID
-      }),
-    });
-
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ error: 'Unknown error' }));
-      console.error('VAPI API error:', error);
-      throw new Error(error.error || 'VAPI API error');
-    }
-
-    const data = await response.json();
-    if (data.error) {
-      console.error('VAPI response error:', data.error);
-      throw new Error(data.error);
-    }
-    return data as VapiResponse;
-  } catch (error) {
-    console.error('VAPI request failed:', error);
-    throw error;
-  }
+  const response = await fetch('http://localhost:5001/api/vapi', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 
+      audio,
+      assistant_id: process.env.VAPI_ASSISTANT_ID || 'default'
+    }),
+  });
+  if (!response.ok) throw new Error('Vapi proxy error');
+  const data = await response.json();
+  if (data.error) throw new Error(data.error);
+  return data as VapiResponse;
 }
 
 // Helper function to call Voiceflow for chat interactions
 async function fetchVoiceflow(message: string, userId: string) {
   try {
     console.log('Sending message to Voiceflow:', { message, userId });
-    const response = await fetch('https://general-runtime.voiceflow.com/state/user', {
+    const response = await fetch('http://localhost:5001/api/voiceflow', {
       method: 'POST',
       headers: { 
-        'Authorization': import.meta.env.VITE_VOICEFLOW_API_KEY,
-        'versionID': import.meta.env.VITE_VOICEFLOW_VERSION_ID,
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify({ 
-        action: {
-          type: 'text',
-          payload: message
-        }
-      }),
+      body: JSON.stringify({ message, userId }),
     });
 
     if (!response.ok) {
       const errorData = await response.json();
       console.error('Voiceflow API error:', errorData);
-      throw new Error(errorData.error || 'Voiceflow API error');
+      throw new Error(errorData.error || 'Voiceflow proxy error');
     }
 
     const data = await response.json();
     console.log('Voiceflow response:', data);
-
-    // Extract text and metadata from response
-    const text = data.trace
-      .filter((t: VoiceflowTrace) => t.type === 'text')
-      .map((t: VoiceflowTrace) => t.payload?.message)
-      .join('\n');
-
-    const metadata = {
-      intent: data.trace.find((t: VoiceflowTrace) => t.type === 'intent')?.payload?.intent,
-      entities: data.trace.find((t: VoiceflowTrace) => t.type === 'entities')?.payload?.entities || {}
-    };
-
     return {
-      response: text,
-      metadata,
-      history: []
+      response: data.response || '',
+      metadata: data.metadata || {},
+      history: data.history || []
     };
   } catch (error) {
     console.error('Voiceflow API error:', error);
@@ -175,20 +138,17 @@ export class AIService {
   ): Promise<void> {
     try {
       console.log('Initializing voice stream...');
-      const wsUrl = 'wss://api.vapi.ai/v1/voice/stream';
-      console.log('Using WebSocket URL:', wsUrl);
+      const response = await fetch('http://localhost:5001/api/vapi/voice');
+      if (!response.ok) {
+        throw new Error('Failed to initialize voice stream');
+      }
+      const { wsUrl } = await response.json();
+      console.log('Got WebSocket URL:', wsUrl);
 
       const ws = new WebSocket(wsUrl);
-      
+
       ws.onopen = () => {
         console.log('Connected to voice stream');
-        // Send authentication message
-        ws.send(JSON.stringify({
-          type: 'auth',
-          key: import.meta.env.VITE_VAPI_KEY,
-          assistant_id: import.meta.env.VITE_VAPI_ASSISTANT_ID
-        }));
-        
         this.voiceStream = {
           ws,
           isConnected: true,

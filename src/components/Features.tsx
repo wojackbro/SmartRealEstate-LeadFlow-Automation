@@ -1,15 +1,13 @@
 import React from 'react';
 import { 
-  MessageSquare, 
-  Phone, 
-  Mail, 
-  Link, 
+  Brain, 
+  BarChartBig, 
+  Users, 
+  MessageSquareQuote, 
+  Zap, 
   Bot, 
-  Zap,
-  BarChart,
-  Users,
-  Shield,
-  Settings
+  LineChart,
+  Shield
 } from 'lucide-react';
 
 interface FeatureProps {
@@ -33,45 +31,45 @@ const Feature: React.FC<FeatureProps> = ({ icon, title, description }) => {
 export const Features: React.FC = () => {
   const features = [
     {
-      icon: <MessageSquare className="h-6 w-6" />,
-      title: 'Multi-Channel AI Engagement',
-      description: 'Go beyond basic drips. Let AI qualify leads via personalized Email, SMS, and natural Voice conversations.'
+      icon: <Brain className="h-6 w-6" />,
+      title: 'AI-Powered Lead Scoring',
+      description: 'Automatically score and prioritize leads based on engagement and conversion likelihood.'
     },
     {
-      icon: <Link className="h-6 w-6" />,
-      title: 'Seamless CRM Integration',
-      description: 'Keep your workflow smooth. Flawless, two-way sync with Salesforce and HubSpot.'
+      icon: <BarChartBig className="h-6 w-6" />,
+      title: 'Conversion Analytics',
+      description: 'Get detailed insights into your conversion funnel with powerful visualization tools.'
     },
     {
       icon: <Users className="h-6 w-6" />,
-      title: 'Integrated Lead & Property Hub',
-      description: 'Connect the dots instantly. Manage leads and listings in one place, with smart matching based on buyer preferences.'
+      title: 'Audience Segmentation',
+      description: 'Segment your leads based on behavior, demographics, and engagement patterns.'
     },
     {
-      icon: <Settings className="h-6 w-6" />,
-      title: 'Designed Exclusively for Real Estate',
-      description: 'No generic bloat. An intuitive interface and features built around your daily needs as an agent.'
-    },
-    {
-      icon: <Bot className="h-6 w-6" />,
-      title: 'AI-Powered Lead Scoring',
-      description: 'Automatically score and prioritize leads based on engagement, behavior, and conversion likelihood.'
+      icon: <MessageSquareQuote className="h-6 w-6" />,
+      title: 'Smart Chat Automation',
+      description: 'Engage visitors with intelligent chat that qualifies leads while you sleep.'
     },
     {
       icon: <Zap className="h-6 w-6" />,
-      title: 'Automated Follow-ups',
-      description: 'Never miss a follow-up. Our AI automatically engages leads at the perfect time with personalized messages.'
+      title: 'Fast Implementation',
+      description: 'Set up in minutes with our code-free integration and start generating leads instantly.'
     },
     {
-      icon: <BarChart className="h-6 w-6" />,
-      title: 'Advanced Analytics',
-      description: 'Get detailed insights into your conversion funnel with powerful visualization tools.'
+      icon: <Bot className="h-6 w-6" />,
+      title: 'Custom AI Agents',
+      description: 'Create personalized AI agents that match your brand voice and sales approach.'
+    },
+    {
+      icon: <LineChart className="h-6 w-6" />,
+      title: 'Performance Tracking',
+      description: 'Monitor and optimize your lead generation performance in real-time.'
     },
     {
       icon: <Shield className="h-6 w-6" />,
       title: 'GDPR Compliance',
       description: 'Built-in compliance tools to ensure your lead generation meets privacy standards.'
-    }
+    },
   ];
 
   return (
@@ -79,10 +77,10 @@ export const Features: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            LeadChase: Intelligent Nurturing, Built for Agents Like You
+            Powerful Features for Lead Generation
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We're building the simple, powerful platform you've been waiting for, designed specifically for your Real Estate workflow.
+            Everything you need to capture, qualify, and convert more leads
           </p>
         </div>
         

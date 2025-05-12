@@ -21,20 +21,15 @@ if (!validateVapiKey(vapiKey)) {
   console.error('Invalid Vapi API key format. Key should be a valid Vapi public or private key.');
 }
 
-// Default configurations
-const DEFAULT_VAPI_KEY = 'vapi_public_1234567890abcdef';
+// Default Vapi configuration
+const DEFAULT_VAPI_KEY = 'vapi_public_1234567890abcdef'; // Replace with your actual default key if needed
 const DEFAULT_ASSISTANT_ID = 'default';
-const DEFAULT_VOICEFLOW_VERSION_ID = 'production';
 
 // Log the final configuration
 export const config = {
   vapi: {
     key: vapiKey,
     assistantId: getEnvVar('VITE_VAPI_ASSISTANT_ID') || DEFAULT_ASSISTANT_ID
-  },
-  voiceflow: {
-    key: getEnvVar('VITE_VOICEFLOW_API_KEY'),
-    versionId: getEnvVar('VITE_VOICEFLOW_VERSION_ID') || DEFAULT_VOICEFLOW_VERSION_ID
   },
   api: {
     url: getEnvVar('VITE_LEAD_API_URL') || 'https://api.example.com'
@@ -44,7 +39,5 @@ export const config = {
 console.log('Final config:', {
   vapiKey: config.vapi.key ? 'Present' : 'Missing',
   assistantId: config.vapi.assistantId ? 'Present' : 'Missing',
-  voiceflowKey: config.voiceflow.key ? 'Present' : 'Missing',
-  voiceflowVersion: config.voiceflow.versionId,
   apiUrl: config.api.url
 }); 
