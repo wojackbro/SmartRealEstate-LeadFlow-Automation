@@ -26,3 +26,4 @@ dist-ssr
 
 # Ignore the OpenAI API key file
 src/components/openapikey.env
+.vercel
