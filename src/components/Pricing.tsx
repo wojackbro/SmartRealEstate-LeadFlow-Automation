@@ -1,83 +1,67 @@
-import React, { useState } from 'react';
-import { Check, HelpCircle } from 'lucide-react';
+import React from 'react';
+import { Check } from 'lucide-react';
 
-interface PlanFeature {
-  name: string;
-  tooltip?: string;
-  included: boolean | string;
-}
-
-interface PricingPlan {
+interface Plan {
   name: string;
   description: string;
   price: string;
   period: string;
+  features: string[];
   cta: string;
   popular?: boolean;
-  features: PlanFeature[];
 }
 
 export const Pricing: React.FC = () => {
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
-  
-  const plans: PricingPlan[] = [
+  const plans: Plan[] = [
     {
       name: 'Starter',
-      description: 'Perfect for small businesses just getting started',
-      price: billingCycle === 'monthly' ? '$49' : '$39',
-      period: billingCycle === 'monthly' ? '/month' : '/month, billed annually',
-      cta: 'Start Free Trial',
+      description: 'Perfect for individual agents',
+      price: '$49',
+      period: '/month',
       features: [
-        { name: 'Up to 1,000 visitors tracked', included: true },
-        { name: 'Basic lead form builder', included: true },
-        { name: 'Email capture popups', included: true },
-        { name: 'Standard lead qualification', included: true },
-        { name: 'Basic analytics dashboard', included: true },
-        { name: 'Standard email notifications', included: true },
-        { name: 'AI-powered lead scoring', included: false },
-        { name: 'Advanced integrations', included: false },
-        { name: 'Custom branding', included: false },
-        { name: 'Priority support', included: false },
-      ]
+        'Up to 100 leads per month',
+        'Basic AI lead scoring',
+        'Email support',
+        '1 team member',
+        'Basic analytics',
+        'Standard integrations'
+      ],
+      cta: 'Start Free Trial'
     },
     {
-      name: 'Growth',
-      description: 'For growing teams with more advanced needs',
-      price: billingCycle === 'monthly' ? '$99' : '$79',
-      period: billingCycle === 'monthly' ? '/month' : '/month, billed annually',
-      cta: 'Start Free Trial',
-      popular: true,
+      name: 'Professional',
+      description: 'Ideal for growing teams',
+      price: '$99',
+      period: '/month',
       features: [
-        { name: 'Up to 10,000 visitors tracked', included: true },
-        { name: 'Advanced form builder', included: true },
-        { name: 'Smart popups & slide-ins', included: true },
-        { name: 'AI lead qualification', included: true },
-        { name: 'Full analytics dashboard', included: true },
-        { name: 'Real-time notifications', included: true },
-        { name: 'AI-powered lead scoring', included: true },
-        { name: 'Advanced integrations', included: true },
-        { name: 'Custom branding', included: true },
-        { name: 'Priority support', included: false },
-      ]
+        'Up to 500 leads per month',
+        'Advanced AI lead scoring',
+        'Priority support',
+        '5 team members',
+        'Advanced analytics',
+        'Custom integrations',
+        'Workflow automation',
+        'A/B testing'
+      ],
+      cta: 'Start Free Trial',
+      popular: true
     },
     {
       name: 'Enterprise',
-      description: 'For organizations with complex requirements',
+      description: 'For large brokerages',
       price: 'Custom',
-      period: 'Contact for pricing',
-      cta: 'Contact Sales',
+      period: '',
       features: [
-        { name: 'Unlimited visitors tracked', included: true },
-        { name: 'Premium form builder', included: true },
-        { name: 'All popup & form types', included: true },
-        { name: 'Advanced AI qualification', included: true },
-        { name: 'Custom analytics & reports', included: true },
-        { name: 'Custom notifications', included: true },
-        { name: 'Advanced AI lead scoring', included: true },
-        { name: 'Premium integrations & API', included: true },
-        { name: 'White labeling & branding', included: true },
-        { name: 'Dedicated support manager', included: true },
-      ]
+        'Unlimited leads',
+        'Custom AI models',
+        '24/7 dedicated support',
+        'Unlimited team members',
+        'Custom analytics',
+        'API access',
+        'Advanced security',
+        'Custom solutions'
+      ],
+      cta: 'Contact Sales'
     }
   ];
 
@@ -91,34 +75,6 @@ export const Pricing: React.FC = () => {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Choose the plan that's right for your business
           </p>
-          
-          <div className="flex justify-center mt-8">
-            <div className="inline-flex p-1 rounded-full bg-gray-100 border border-gray-200">
-              <button
-                onClick={() => setBillingCycle('monthly')}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
-                  billingCycle === 'monthly'
-                    ? 'bg-white text-gray-900 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                Monthly
-              </button>
-              <button
-                onClick={() => setBillingCycle('annual')}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors flex items-center ${
-                  billingCycle === 'annual'
-                    ? 'bg-white text-gray-900 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                Annual
-                <span className="ml-2 py-0.5 px-2 rounded-full bg-teal-100 text-teal-800 text-xs font-semibold">
-                  Save 20%
-                </span>
-              </button>
-            </div>
-          </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -146,6 +102,15 @@ export const Pricing: React.FC = () => {
                   <span className="text-gray-600 ml-1">{plan.period}</span>
                 </div>
                 
+                <ul className="space-y-4 mb-8">
+                  {plan.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-start">
+                      <Check className="h-5 w-5 text-teal-500 mt-1 mr-3 flex-shrink-0" />
+                      <span className="text-gray-600">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                
                 <button 
                   className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${
                     plan.popular 
@@ -156,35 +121,17 @@ export const Pricing: React.FC = () => {
                   {plan.cta}
                 </button>
               </div>
-              
-              <div className="bg-gray-50 p-8 border-t border-gray-200">
-                <p className="font-medium text-gray-900 mb-4">Features include:</p>
-                <ul className="space-y-3">
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start">
-                      {typeof feature.included === 'boolean' ? (
-                        feature.included ? (
-                          <Check className="h-5 w-5 text-teal-500 mr-2 flex-shrink-0" />
-                        ) : (
-                          <span className="h-5 w-5 rounded-full border-2 border-gray-300 mr-2 flex-shrink-0" />
-                        )
-                      ) : (
-                        <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 mr-2">
-                          {feature.included}
-                        </span>
-                      )}
-                      <span className="text-gray-700 flex items-center">
-                        {feature.name}
-                        {feature.tooltip && (
-                          <HelpCircle className="h-4 w-4 text-gray-400 ml-1" />
-                        )}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </div>
           ))}
+        </div>
+        
+        <div className="mt-16 text-center">
+          <p className="text-gray-600">
+            All plans include a 14-day free trial. No credit card required.
+          </p>
+          <p className="text-gray-600 mt-2">
+            Need a custom plan? <a href="#contact" className="text-teal-600 hover:text-teal-700 font-medium">Contact us</a>
+          </p>
         </div>
       </div>
     </section>

@@ -334,12 +334,12 @@ export const Voicebot: React.FC<VoicebotProps> = ({ onLeadCaptured, onClose }) =
       }
 
       console.log('🎤 Toggling listening, current state:', { isListening, isProcessing });
-      if (isListening) {
+    if (isListening) {
         console.log('🛑 Stopping Vapi...');
         if (vapiRef.current) {
           vapiRef.current.stop();
         }
-      } else {
+    } else {
         console.log('▶️ Starting Vapi...');
         setIsProcessing(true);
         setError(null);
@@ -408,14 +408,14 @@ export const Voicebot: React.FC<VoicebotProps> = ({ onLeadCaptured, onClose }) =
       <div className="bg-green-500 text-white p-4 rounded-t-2xl flex justify-between items-center">
         <h3 className="font-semibold">Voice Assistant</h3>
         {onClose && (
-          <button
+              <button
             onClick={onClose}
             className="hover:bg-green-600 rounded-full p-1 transition-colors"
             aria-label="Close voicebot"
-          >
+              >
             <X className="w-5 h-5" />
-          </button>
-        )}
+              </button>
+            )}
       </div>
       <div className="flex-1 flex flex-col">
         <div className="flex-1 overflow-y-auto p-4 space-y-4" style={{ minHeight: '200px' }}>
@@ -478,21 +478,21 @@ export const Voicebot: React.FC<VoicebotProps> = ({ onLeadCaptured, onClose }) =
                 >
                   Try Again
                 </button>
-              </div>
-            )}
-            
+            </div>
+          )}
+          
             {isProcessing && (
               <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-blue-100 text-blue-700 px-4 py-2 rounded-lg shadow-lg text-sm whitespace-nowrap">
                 Processing...
-              </div>
-            )}
-            
+            </div>
+          )}
+          
             {!isInitialized && (
               <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-yellow-100 text-yellow-700 px-4 py-2 rounded-lg shadow-lg text-sm whitespace-nowrap">
                 Initializing...
               </div>
             )}
-          </div>
+            </div>
         </div>
       </div>
       <style>

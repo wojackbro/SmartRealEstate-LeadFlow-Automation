@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
               <Logo />
             </div>
             <p className="text-gray-400 mb-8 max-w-md">
-              LeadFlow helps businesses convert website visitors into qualified leads with AI-powered lead generation and qualification tools.
+              LeadChase helps businesses transform their lead generation with AI-powered automation, qualification, and nurturing tools.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-teal-400 transition-colors">
@@ -41,13 +41,13 @@ export const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-6">Platform</h3>
+            <h3 className="text-lg font-semibold mb-6">Product</h3>
             <ul className="space-y-4">
               <li><a href="#features" className="text-gray-400 hover:text-teal-400 transition-colors">Features</a></li>
               <li><a href="#pricing" className="text-gray-400 hover:text-teal-400 transition-colors">Pricing</a></li>
+              <li><a href="#how-it-works" className="text-gray-400 hover:text-teal-400 transition-colors">How It Works</a></li>
               <li><a href="#" className="text-gray-400 hover:text-teal-400 transition-colors">Integrations</a></li>
               <li><a href="#" className="text-gray-400 hover:text-teal-400 transition-colors">API</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-teal-400 transition-colors">Changelog</a></li>
             </ul>
           </div>
           
@@ -57,8 +57,8 @@ export const Footer: React.FC = () => {
               <li><a href="#" className="text-gray-400 hover:text-teal-400 transition-colors">Blog</a></li>
               <li><a href="#" className="text-gray-400 hover:text-teal-400 transition-colors">Documentation</a></li>
               <li><a href="#" className="text-gray-400 hover:text-teal-400 transition-colors">Guides</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-teal-400 transition-colors">Help Center</a></li>
               <li><a href="#" className="text-gray-400 hover:text-teal-400 transition-colors">Webinars</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-teal-400 transition-colors">Support</a></li>
             </ul>
           </div>
           
@@ -77,7 +77,7 @@ export const Footer: React.FC = () => {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <p className="text-gray-500">
-              &copy; {new Date().getFullYear()} LeadFlow. All rights reserved.
+              &copy; {new Date().getFullYear()} LeadChase. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-500 hover:text-teal-400 transition-colors text-sm">
@@ -92,7 +92,7 @@ export const Footer: React.FC = () => {
             </div>
           </div>
           <div className="mt-6 text-center md:text-left text-gray-500 text-sm">
-            Made with <Heart className="h-4 w-4 inline-block text-red-500" /> by the LeadFlow team
+            Made with <Heart className="h-4 w-4 inline-block text-red-500" /> by the LeadChase team
           </div>
         </div>
       </div>

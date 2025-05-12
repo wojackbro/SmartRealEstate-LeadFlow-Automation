@@ -46,14 +46,14 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onLeadCaptured, onClose }) => 
       setIsProcessing(true);
       setError(null);
 
-      // Add user message
-      const userMessage: Message = { 
-        type: 'user', 
-        content: input,
-        timestamp: new Date()
-      };
-      setMessages(prev => [...prev, userMessage]);
-      setInput('');
+    // Add user message
+    const userMessage: Message = {
+      type: 'user',
+      content: input,
+      timestamp: new Date()
+    };
+    setMessages(prev => [...prev, userMessage]);
+    setInput('');
 
       // Get AI response
       const response = await aiService.current.generateResponse(
@@ -126,15 +126,15 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onLeadCaptured, onClose }) => 
         <div className="bg-white rounded-2xl shadow-2xl w-96 h-[600px] flex flex-col">
           <div className="bg-blue-500 text-white p-4 rounded-t-2xl flex justify-between items-center">
             <h3 className="font-semibold">AI Assistant</h3>
-            <button
+              <button 
               onClick={onClose ? onClose : () => setIsOpen(false)}
               className="hover:bg-blue-600 rounded-full p-1 transition-colors"
               aria-label="Close chat"
-            >
+              >
               <X className="w-5 h-5" />
-            </button>
+              </button>
           </div>
-
+          
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.length === 0 ? (
               <div className="text-center text-gray-500 mt-8">
@@ -142,17 +142,17 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onLeadCaptured, onClose }) => 
               </div>
             ) : (
               messages.map((message, index) => (
+              <div
+                key={index}
+                className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
+              >
                 <div
-                  key={index}
-                  className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div
                     className={`max-w-[80%] rounded-lg p-3 ${
-                      message.type === 'user'
+                    message.type === 'user'
                         ? 'bg-blue-500 text-white'
-                        : 'bg-gray-100 text-gray-800'
-                    }`}
-                  >
+                      : 'bg-gray-100 text-gray-800'
+                  }`}
+                >
                     <p className="whitespace-pre-wrap">{message.content}</p>
                     <p className="text-xs mt-1 opacity-70">
                       {message.timestamp.toLocaleTimeString()}
@@ -163,7 +163,7 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onLeadCaptured, onClose }) => 
             )}
             <div ref={messagesEndRef} />
           </div>
-
+          
           {error && (
             <div className="bg-red-100 text-red-700 px-4 py-2 text-sm">
               {error}

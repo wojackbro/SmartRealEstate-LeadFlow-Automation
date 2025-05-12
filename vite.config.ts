@@ -15,10 +15,10 @@ export default defineConfig(({ mode }) => {
   });
 
   return {
-    plugins: [react()],
-    optimizeDeps: {
-      exclude: ['lucide-react'],
-    },
+  plugins: [react()],
+  optimizeDeps: {
+    exclude: ['lucide-react'],
+  },
     define: {
       'process.env': env
     },
