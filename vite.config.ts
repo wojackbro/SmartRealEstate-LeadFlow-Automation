@@ -15,10 +15,21 @@ export default defineConfig(({ mode }) => {
   });
 
   return {
-  plugins: [react()],
-  optimizeDeps: {
-    exclude: ['lucide-react'],
-  },
+    plugins: [react()],
+    optimizeDeps: {
+      exclude: ['lucide-react'],
+    },
+    build: {
+      chunkSizeWarningLimit: 1000,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vendor: ['react', 'react-dom', 'react-router-dom'],
+            ui: ['lucide-react'],
+          },
+        },
+      },
+    },
     define: {
       'process.env': env
     },
