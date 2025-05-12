@@ -5,34 +5,10 @@
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "devCommand": "npm run dev",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
   "routes": [
-    {
-      "src": "/assets/(.*)",
-      "headers": {
-        "cache-control": "public, max-age=31536000, immutable"
-      },
-      "continue": true
-    },
-    {
-      "handle": "filesystem"
-    },
     {
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ],
-  "env": {
-    "VITE_OPENAI_API_KEY": "@vite_openai_api_key",
-    "VITE_VAPI_KEY": "@vite_vapi_key",
-    "VITE_VAPI_ASSISTANT_ID": "@vite_vapi_assistant_id"
-  }
+  ]
 } 
