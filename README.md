@@ -47,22 +47,36 @@ Before you begin, ensure you have the following installed on your machine:
 
 To use the AI-powered voice and chat assistants, you need to configure the environment variables.
 
-1. Create a `.env` file in the `src/components/` directory if it doesn't already exist.
+1. Create a `.env` file in the root directory if it doesn't already exist.
 
 2. Add the following variables to the `.env` file:
    ```env
-   VITE_OPENAI_API_KEY=YOUR_API_KEY_HERE
-   ```
-   Replace `YOUR_API_KEY_HERE` with your OpenAI API key. You can obtain an API key by signing up at [OpenAI](https://openai.com/).
+   # VAPI Configuration
+   VITE_VAPI_KEY=your_vapi_key_here
+   VITE_VAPI_ASSISTANT_ID=your_assistant_id_here
 
-3. Save the file.
+   # Voiceflow Configuration
+   VITE_VOICEFLOW_API_KEY=your_voiceflow_api_key_here
+   VITE_VOICEFLOW_VERSION_ID=your_version_id_here
+
+   # OpenAI Configuration
+   VITE_OPENAI_API_KEY=your_openai_api_key_here
+
+   # API Configuration
+   VITE_LEAD_API_URL=your_lead_api_url_here
+   ```
+
+   Replace the placeholder values with your actual API keys and configuration values.
+
+3. For Vercel deployment, add these same environment variables in your Vercel project settings.
 
 ## Features
 
-- **AI Chat Assistant**: Engage with leads using an intelligent chat interface.
-- **AI Voice Assistant**: Communicate with leads through a voice-enabled assistant.
+- **AI Chat Assistant**: Engage with leads using an intelligent chat interface powered by Voiceflow.
+- **AI Voice Assistant**: Communicate with leads through a voice-enabled assistant powered by VAPI.
 - **Lead Management**: Capture, manage, and analyze leads effectively.
-- **Analytics Dashboard**: Gain insights into lead performance and reports.
+- **Real-time Communication**: Seamless integration between voice and chat interfaces.
+- **Secure API Integration**: Protected communication with VAPI and Voiceflow services.
 
 For more details, visit the [GitHub repository](https://github.com/wojackbro/SmartRealEstate-LeadFlow-Automation).
 
