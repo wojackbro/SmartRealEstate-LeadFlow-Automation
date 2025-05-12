@@ -24,15 +24,35 @@ export default defineConfig(({ mode }) => {
       chunkSizeWarningLimit: 2000,
       rollupOptions: {
         output: {
-          manualChunks: {
-            'react-vendor': ['react', 'react-dom'],
-            'router': ['react-router-dom'],
-            'ui': ['lucide-react'],
-            'charts': ['recharts'],
-            'markdown': ['react-markdown', 'remark-gfm'],
-            'api': ['openai', '@vapi-ai/web'],
-            'utils': ['uuid', 'ws', 'node-fetch']
-          },
+          manualChunks: (id) => {
+            if (id.includes('node_modules')) {
+              if (id.includes('react') || id.includes('react-dom')) {
+                return 'react-vendor';
+              }
+              if (id.includes('react-router')) {
+                return 'router';
+              }
+              if (id.includes('lucide-react')) {
+                return 'ui';
+              }
+              if (id.includes('recharts')) {
+                return 'charts';
+              }
+              if (id.includes('markdown') || id.includes('remark')) {
+                return 'markdown';
+              }
+              if (id.includes('openai') || id.includes('vapi')) {
+                return 'api';
+              }
+              return 'vendor';
+            }
+            if (id.includes('src/components')) {
+              return 'components';
+            }
+            if (id.includes('src/pages')) {
+              return 'pages';
+            }
+          }
         },
       },
       sourcemap: mode === 'development',
