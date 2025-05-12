@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
 interface Testimonial {
@@ -15,34 +15,42 @@ export const Testimonials: React.FC = () => {
   const testimonials: Testimonial[] = [
     {
       id: 1,
-      content: "LeadFlow completely transformed our lead generation process. We're seeing 3x more qualified leads and our sales team can finally focus on closing instead of prospecting.",
+      content: "LeadChase completely transformed our lead generation process. We're seeing 3x more qualified leads and our sales team can finally focus on closing instead of prospecting.",
       author: "Sarah Johnson",
       role: "Marketing Director",
-      company: "TechSolutions Inc.",
+      company: "TechCorp",
       rating: 5,
-      image: "https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=800"
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
     },
     {
       id: 2,
-      content: "The AI qualification tool is incredible. It accurately identifies our best leads and the integration with our CRM was seamless. Worth every penny!",
+      content: "We implemented LeadChase six months ago and have already seen a 42% increase in conversion rates. The analytics dashboard makes it easy to track and optimize performance.",
       author: "Michael Chen",
-      role: "Sales Manager",
-      company: "GrowthForce Agency",
+      role: "CEO",
+      company: "GrowthLabs",
       rating: 5,
-      image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=800"
+      image: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
     },
     {
       id: 3,
-      content: "We implemented LeadFlow six months ago and have already seen a 42% increase in conversion rates. The analytics dashboard makes it easy to track and optimize performance.",
-      author: "Alicia Rodriguez",
-      role: "CEO",
-      company: "Sprout Digital",
-      rating: 4,
-      image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=800"
+      content: "The AI-powered lead scoring has been a game-changer for our sales team. We're now able to focus on the most promising opportunities and close deals faster.",
+      author: "Emily Rodriguez",
+      role: "Sales Manager",
+      company: "InnovateTech",
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
     }
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % testimonials.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const nextTestimonial = () => {
     setActiveIndex((current) => (current + 1) % testimonials.length);
@@ -60,7 +68,7 @@ export const Testimonials: React.FC = () => {
             Trusted by Industry Leaders
           </h2>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-            See what our customers say about LeadFlow
+            See what our customers say about LeadChase
           </p>
         </div>
         

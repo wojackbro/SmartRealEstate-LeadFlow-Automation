@@ -50,7 +50,7 @@ export const HowItWorks: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            How LeadFlow Works
+            How LeadChase Works
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             A simple four-step process to transform your lead generation
@@ -83,20 +83,23 @@ export const HowItWorks: React.FC = () => {
               </div>
               
               <div className="w-full lg:w-1/2">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                  {step.title}
-                </h3>
-                <p className="text-lg text-gray-600 mb-6">
-                  {step.description}
-                </p>
-                <ul className="space-y-3">
-                  {step.benefits.map((benefit, benefitIndex) => (
-                    <li key={benefitIndex} className="flex items-start">
-                      <CheckCircle2 className="h-6 w-6 text-teal-500 mr-2 flex-shrink-0" />
-                      <span className="text-gray-700">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="relative">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                    {step.title}
+                  </h3>
+                  <p className="text-lg text-gray-600 mb-6">
+                    {step.description}
+                  </p>
+                  
+                  <ul className="space-y-3">
+                    {step.benefits.map((benefit, i) => (
+                      <li key={i} className="flex items-start">
+                        <CheckCircle2 className="h-6 w-6 text-teal-500 flex-shrink-0 mr-3" />
+                        <span className="text-gray-700">{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           ))}

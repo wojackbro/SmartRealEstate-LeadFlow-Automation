@@ -43,7 +43,7 @@ export const Contact: React.FC = () => {
               Ready to transform your lead generation?
             </h2>
             <p className="text-xl text-gray-600 mb-8">
-              Schedule a demo with our team to see how LeadFlow can help your business generate more qualified leads.
+              Schedule a demo with our team to see how LeadChase can help your business generate more qualified leads.
             </p>
             
             <div className="space-y-6">

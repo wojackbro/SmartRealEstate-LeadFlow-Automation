@@ -201,7 +201,7 @@ export const Voicebot: React.FC<VoicebotProps> = ({ onLeadCaptured, onClose }) =
                         timestamp: new Date()
                       };
                       return newMessages;
-                    }
+    }
                   }
                   
                   // For final transcripts

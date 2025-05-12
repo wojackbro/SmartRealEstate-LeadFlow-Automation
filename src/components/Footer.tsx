@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
               <Logo />
             </div>
             <p className="text-gray-400 mb-8 max-w-md">
-              LeadFlow helps businesses convert website visitors into qualified leads with AI-powered lead generation and qualification tools.
+              LeadChase helps businesses convert website visitors into qualified leads with AI-powered lead generation and qualification tools.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-teal-400 transition-colors">
@@ -77,7 +77,7 @@ export const Footer: React.FC = () => {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <p className="text-gray-500">
-              &copy; {new Date().getFullYear()} LeadFlow. All rights reserved.
+              &copy; {new Date().getFullYear()} LeadChase. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-500 hover:text-teal-400 transition-colors text-sm">
@@ -92,7 +92,7 @@ export const Footer: React.FC = () => {
             </div>
           </div>
           <div className="mt-6 text-center md:text-left text-gray-500 text-sm">
-            Made with <Heart className="h-4 w-4 inline-block text-red-500" /> by the LeadFlow team
+            Made with <Heart className="h-4 w-4 inline-block text-red-500" /> by the LeadChase team
           </div>
         </div>
       </div>
